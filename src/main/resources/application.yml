@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ccs
+    url: jdbc:mysql://ccsyasu.cafe24.com:3306/ccsyasu_db
+    password: ccsYasu
+
+server:
+  servlet:
+    encoding:
+      force-response: 'true'
+  port: 8081
+
+projectYasu:
+  http:
+    auth-token-header:
+      name: Authorization
+    auth-token: fdasrv34atdzbt4zeex7y
