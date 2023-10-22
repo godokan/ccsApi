@@ -9,7 +9,7 @@ server:
   servlet:
     encoding:
       force-response: 'true'
-  port: 8082
+  port: 81
 
 projectYasu:
   http:
