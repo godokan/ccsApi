@@ -23,10 +23,16 @@ public class ApiUserEntity {
     @JoinColumn(name = "stud_num", referencedColumnName = "stud_num", insertable = false, updatable = false)
     private CcsUserEntity studNum;
 
+
+    @ManyToOne(cascade = CascadeType.REMOVE, targetEntity = CcsUserEntity.class)
+    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+    private CcsUserEntity id;
+
     @Builder
-    public ApiUserEntity(Integer no, String apiKey, CcsUserEntity studNum) {
+    public ApiUserEntity(Integer no, String apiKey, CcsUserEntity studNum, CcsUserEntity id) {
         this.no = no;
         this.apiKey = apiKey;
         this.studNum = studNum;
+        this.id = id;
     }
 }
