@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "api_list_map", schema = "ccsyasu_db")
+@Table(name = "api_list_toiletmap", schema = "ccsyasu_db")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ApiListMapEntity {
