@@ -2,6 +2,7 @@ package com.yasu.ccsapi.controller;
 
 import com.yasu.ccsapi.DTO.ApiUserDto;
 import com.yasu.ccsapi.Domain.Repository.ApiUserRepository;
+import com.yasu.ccsapi.Service.UserService;
 import com.yasu.ccsapi.security.CryptoManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,26 +19,12 @@ public class UserApiController {
 
     @Autowired
     private ApiUserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/issue")
     public String issueKey(@RequestParam String id, @RequestParam Integer stdNum, @RequestParam String apiName) throws Exception {
-        // API KEY 구조 : {회원ID}/{API이름}
-        // API KEY 에 대한 복호화 키 : {학번}
-
-        String issued;
-        CryptoManager manager = new CryptoManager();
-        issued = manager.encrypt(id+"/"+apiName, String.valueOf(stdNum));
-
-        ApiUserDto userDto = ApiUserDto.builder()
-                .api_key(issued)
-                .studNum(stdNum)
-                .build();
-
-        log.info("API KEY ISSUED : "+userDto.getApi_key() + "/" + userDto.getStudNum());
-
-        userRepository.save(userDto.toEntity());
-
-        return issued;
+        return userService.issue(id, stdNum, apiName);
     }
 
 
