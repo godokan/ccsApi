@@ -8,12 +8,12 @@ import lombok.Data;
 public class ApiUserListDto {
 
     private Integer no;
-    private Integer listName;
+    private String listName;
     private Integer userStudNum;
     private String apiKey;
 
     @Builder
-    public ApiUserListDto(Integer no, Integer listName, Integer userStudNum, String apiKey) {
+    public ApiUserListDto(Integer no, String listName, Integer userStudNum, String apiKey) {
         this.no = no;
         this.listName = listName;
         this.userStudNum = userStudNum;
@@ -23,7 +23,7 @@ public class ApiUserListDto {
     public ApiUserListEntity toEntity() {
         return ApiUserListEntity.builder()
                 .no(no)
-                .listNo(listName)
+                .listName(listName)
                 .userStudNum(userStudNum)
                 .apiKey(apiKey)
                 .build();
