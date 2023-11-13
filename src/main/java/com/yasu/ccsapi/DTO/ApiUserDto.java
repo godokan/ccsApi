@@ -10,14 +10,12 @@ import lombok.NonNull;
 public class ApiUserDto {
     @NonNull
     private Integer no;
-    private String api_key;
     private Integer studNum;
     private String id;
 
     @Builder
-    public ApiUserDto(@NonNull Integer no, String api_key, Integer studNum, String id) {
+    public ApiUserDto(@NonNull Integer no, Integer studNum, String id) {
         this.no = no;
-        this.api_key = api_key;
         this.studNum = studNum;
         this.id = id;
     }
@@ -25,9 +23,8 @@ public class ApiUserDto {
     public ApiUserEntity toEntity() {
         return ApiUserEntity.builder()
                 .no(no)
-                .apiKey(api_key)
                 .studNum(CcsUserEntity.builder().studNum(this.studNum).build())
-                .id(CcsUserEntity.builder().id(this.id).build())
+                .id(id)
                 .build();
     }
 }
