@@ -18,8 +18,8 @@ public class ApiUserListEntity {
     @Column(name = "no", nullable = false)
     private Integer no;
 
-    @JoinColumn(name = "list_no", referencedColumnName = "no", insertable = false, updatable = false)
-    private Integer listNo;
+    @JoinColumn(name = "list_name", referencedColumnName = "no", insertable = false, updatable = false)
+    private Integer listName;
 
     @JoinColumn(name = "user_stud_num", referencedColumnName = "stud_num", insertable = false, updatable = false)
     private Integer userStudNum;
@@ -30,7 +30,7 @@ public class ApiUserListEntity {
     @Builder
     public ApiUserListEntity(Integer no, Integer listNo, Integer userStudNum, String apiKey) {
         this.no = no;
-        this.listNo = listNo;
+        this.listName = listNo;
         this.userStudNum = userStudNum;
         this.apiKey = apiKey;
     }
@@ -38,7 +38,7 @@ public class ApiUserListEntity {
     public ApiUserListDto toDto() {
         return ApiUserListDto.builder()
                 .no(no)
-                .listNo(listNo)
+                .listNo(listName)
                 .userStudNum(userStudNum)
                 .apiKey(apiKey)
                 .build();
