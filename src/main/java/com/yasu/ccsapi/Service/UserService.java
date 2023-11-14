@@ -40,7 +40,7 @@ public class UserService {
         ApiUserListEntity entity = ApiUserListEntity.builder()
                 .apiKey(issuedKey)
                 .userStudNum(studNum)
-                .listName(apiList.getNo())
+                .listName(apiList.getName())
             .build();
 
         userListRepository.save(entity);
@@ -50,7 +50,7 @@ public class UserService {
 
     // API 사용자 등록 여부 확인
     public boolean isSigned(Integer studNum) {
-        ApiUserEntity userEntity = userRepository.findByStudNum(CcsUserEntity.builder().studNum(studNum).build());
+        ApiUserEntity userEntity = userRepository.findByStudNum(studNum);
         return userEntity != null;
     }
 
