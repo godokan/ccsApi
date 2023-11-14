@@ -60,7 +60,7 @@ public class UserService {
         if (ccsUser == null) return false;
 
         ApiUserEntity userEntity = ApiUserEntity.builder()
-                .studNum(ccsUser)
+                .studNum(ccsUser.getStudNum())
                 .id(id)
                 .build();
 

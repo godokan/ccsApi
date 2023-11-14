@@ -23,7 +23,7 @@ public class ApiUserDto {
     public ApiUserEntity toEntity() {
         return ApiUserEntity.builder()
                 .no(no)
-                .studNum(CcsUserEntity.builder().studNum(this.studNum).build())
+                .studNum(studNum)
                 .id(id)
                 .build();
     }
