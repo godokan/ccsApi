@@ -1,6 +1,7 @@
 package com.yasu.ccsapi.controller;
 
 import com.yasu.ccsapi.Domain.Repository.ApiUserRepository;
+import com.yasu.ccsapi.Service.AuthService;
 import com.yasu.ccsapi.Service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class UserApiController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AuthService authService;
 
     @GetMapping("/issue")
     public String issueKey(@RequestParam String id, @RequestParam Integer studNum, @RequestParam String apiId) throws Exception {
@@ -42,5 +45,8 @@ public class UserApiController {
         else return "ERR";
     }
 
-
+    @GetMapping("/getKey")
+    public String getKey(@RequestParam Integer studNum, @RequestParam String listName) {
+        return authService.getApiKey(studNum, listName);
+    }
 }

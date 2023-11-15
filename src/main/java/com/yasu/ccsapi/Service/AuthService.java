@@ -63,6 +63,10 @@ public class AuthService {
         return apiListRepository.findById(decryptedKey.split("/")[1]).getName();
     }
 
+    public String getApiKey(Integer studNum, String apiName) {
+        return userListRepository.findByUserStudNumAndListName(studNum, apiName).getApiKey();
+    }
+
     public List<ErrorDto> makeErrorMsg(ErrorCords cord) {
         List<ErrorDto> error = new ArrayList<>();
         error.add(ErrorDto.builder().errorCode(cord).build());
