@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/user")
 public class UserApiController {
 
+    //TODO : 에러 헨들러 추가하기
+
     @Autowired
     private UserService userService;
 
