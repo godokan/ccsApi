@@ -29,12 +29,13 @@ public class AuthService {
     @Autowired
     private ApiListRepository apiListRepository;
 
-    private CryptoManager cryptoManager;
+    private final CryptoManager cryptoManager = new CryptoManager();
 
     public String decrypt(String key, Integer studNum) {
         try {
             return cryptoManager.decrypt(key, String.valueOf(studNum));
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }
