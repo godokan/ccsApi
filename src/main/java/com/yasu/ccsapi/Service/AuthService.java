@@ -40,7 +40,7 @@ public class AuthService {
     }
 
     public String auth(String decryptedKey, Integer studNum) {
-        // API KEY 구조 : {회원 ID}/{API 이름}
+        // API KEY 구조 : {회원 ID}/{API ID}
         // API KEY 에 대한 복호화 키 : {학번}
         String[] strings = decryptedKey.split("/");
 
@@ -52,7 +52,7 @@ public class AuthService {
         else if(!findCcsUser.getId().equals(strings[0])) // KEY 의 ID와 학번 으로 조회 한 계정의 ID 검사
             return "ERR_KEY_NOT_MATCH";
 
-        ApiListEntity apiList = apiListRepository.findByName(strings[1]); // API 유효성 검사
+        ApiListEntity apiList = apiListRepository.findById(strings[1]); // API 유효성 검사
         if (apiList==null)
             return "ERR_API_NOT_FOUND";
 
@@ -60,7 +60,7 @@ public class AuthService {
     }
 
     public String getApiName(String decryptedKey) {
-        return apiListRepository.findByName(decryptedKey.split("/")[1]).getName();
+        return apiListRepository.findById(decryptedKey.split("/")[1]).getName();
     }
 
     public List<ErrorDto> makeErrorMsg(ErrorCords cord) {

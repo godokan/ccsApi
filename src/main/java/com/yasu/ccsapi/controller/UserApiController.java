@@ -21,8 +21,8 @@ public class UserApiController {
     private UserService userService;
 
     @GetMapping("/issue")
-    public String issueKey(@RequestParam String id, @RequestParam Integer studNum, @RequestParam String apiName) throws Exception {
-        return userService.issue(id, studNum, apiName);
+    public String issueKey(@RequestParam String id, @RequestParam Integer studNum, @RequestParam String apiId) throws Exception {
+        return userService.issue(id, studNum, apiId);
     }
 
     @GetMapping("/findUser")

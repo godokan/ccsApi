@@ -26,16 +26,16 @@ public class UserService {
     CcsUserRepository ccsUserRepository;
 
     // API 발급
-    public String issue(String id, Integer studNum, String apiName) throws Exception {
-        // API KEY 구조 : {회원 ID}/{API 이름}
+    public String issue(String id, Integer studNum, String apiId) throws Exception {
+        // API KEY 구조 : {회원 ID}/{API ID}
         // API KEY 에 대한 복호화 키 : {학번}
 
-        ApiListEntity apiList = apiListRepository.findByName(apiName);
+        ApiListEntity apiList = apiListRepository.findById(apiId);
 
         String issuedKey;
         CryptoManager manager = new CryptoManager();
 
-        issuedKey = manager.encrypt(id+"/"+apiName, String.valueOf(studNum));
+        issuedKey = manager.encrypt(id+"/"+apiId, String.valueOf(studNum));
 
         ApiUserListEntity entity = ApiUserListEntity.builder()
                 .apiKey(issuedKey)
