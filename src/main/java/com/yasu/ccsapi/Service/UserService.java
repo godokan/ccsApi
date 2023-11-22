@@ -1,6 +1,5 @@
 package com.yasu.ccsapi.Service;
 
-import com.yasu.ccsapi.DTO.ApiUserDto;
 import com.yasu.ccsapi.Domain.Entity.ApiListEntity;
 import com.yasu.ccsapi.Domain.Entity.ApiUserEntity;
 import com.yasu.ccsapi.Domain.Entity.ApiUserListEntity;
@@ -12,6 +11,9 @@ import com.yasu.ccsapi.Domain.Repository.CcsUserRepository;
 import com.yasu.ccsapi.security.CryptoManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class UserService {
@@ -36,7 +38,7 @@ public class UserService {
         CryptoManager manager = new CryptoManager();
 
         issuedKey = manager.encrypt(id+"/"+apiId, String.valueOf(studNum));
-
+        issuedKey = URLEncoder.encode(issuedKey, StandardCharsets.UTF_8);
         ApiUserListEntity entity = ApiUserListEntity.builder()
                 .apiKey(issuedKey)
                 .userStudNum(studNum)
