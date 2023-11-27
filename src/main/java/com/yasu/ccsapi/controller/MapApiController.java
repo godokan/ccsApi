@@ -60,9 +60,8 @@ public class MapApiController {
                 .address(address)
                 .build();
 
-        if (mapApiService.newMarker(mapDto))
-            return "OK";
-        return "ERR";
+        mapApiService.newMarker(mapDto);
+        return "OK";
     }
 
     @PatchMapping("/edit")

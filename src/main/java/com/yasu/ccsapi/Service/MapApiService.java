@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class MapApiService {
@@ -26,9 +25,8 @@ public class MapApiService {
     }
 
     // 제대로 저장 되면 true 반환
-    public boolean newMarker(ApiListMapDto mapDto) {
+    public void newMarker(ApiListMapDto mapDto) {
         ApiListMapEntity mapEntity = mapRepository.save(mapDto.toEntity());
-        return Objects.equals(mapDto.toEntity().getNo(), mapEntity.getNo());
     }
 
     public boolean editMarker(ApiListMapDto mapDto) {
