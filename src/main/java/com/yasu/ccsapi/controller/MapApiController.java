@@ -6,10 +6,7 @@ import com.yasu.ccsapi.ErrorCords;
 import com.yasu.ccsapi.Service.AuthService;
 import com.yasu.ccsapi.Service.MapApiService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,5 +49,41 @@ public class MapApiController {
                 return authService.makeErrorMsg(ErrorCords.SERVER_ERROR);
             }
         }
+    }
+
+    @PostMapping("/new")
+    public String createInfo(@RequestParam String name,@RequestParam Double lat,@RequestParam Double lng,@RequestParam String address) {
+        ApiListMapDto mapDto = ApiListMapDto.builder()
+                .name(name)
+                .lat(lat)
+                .lng(lng)
+                .address(address)
+                .build();
+
+        if (mapApiService.newMarker(mapDto))
+            return "OK";
+        return "ERR";
+    }
+
+    @PatchMapping("/edit")
+    public String updateInfo(@RequestParam Integer no,@RequestParam String name,@RequestParam Double lat,@RequestParam Double lng,@RequestParam String address) {
+        ApiListMapDto mapDto = ApiListMapDto.builder()
+                .no(no)
+                .name(name)
+                .lat(lat)
+                .lng(lng)
+                .address(address)
+                .build();
+
+        if (mapApiService.editMarker(mapDto))
+            return "OK";
+        return "ERR";
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteInfo(@RequestParam Integer no) {
+        if (mapApiService.deleteMarker(no))
+            return "OK";
+        return "ERR";
     }
 }

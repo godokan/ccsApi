@@ -2,14 +2,12 @@ package com.yasu.ccsapi.Domain.Entity;
 
 import com.yasu.ccsapi.DTO.ApiListMapDto;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "api_list_toiletmap", schema = "ccsyasu_db")
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ApiListMapEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
